@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
-WORKDIR /
-COPY credentials /
+WORKDIR /.aws
+COPY credentials .
 
 WORKDIR /app
 

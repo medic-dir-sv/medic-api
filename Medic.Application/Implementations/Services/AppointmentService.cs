@@ -19,6 +19,16 @@ public class AppointmentService : IAppointmentService
         _mapper = mapper;
     }
 
+    public async Task<AppointmentVm> GetyById(int aptId)
+    {
+        var app = await _repository.GetById(aptId);
+
+        if (app is null)
+            throw new HttpException(404, "Cita no encontrada");
+
+        return _mapper.Map<Appointment, AppointmentVm>(app);
+    }
+
     public async Task<AppointmentVm> CreateAppointment(string id, CreateAppointmentVm viewModel)
     {
         var appointment = await _repository.CreateAppointment(

@@ -5,6 +5,8 @@ namespace Medic.Services.Abstracts.Repositories;
 
 public interface IAppointmentRepository
 {
+    Task<Appointment?> GetById(int aptId);
+    
     Task<IList<Appointment>> MyAppointments(string patientId);
 
     Task<IList<Appointment>> MyAppointmentsAsDoctor(string doctorId);

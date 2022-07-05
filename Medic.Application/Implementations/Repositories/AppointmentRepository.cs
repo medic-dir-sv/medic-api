@@ -15,6 +15,16 @@ public class AppointmentRepository : IAppointmentRepository
         _ctx = ctx;
     }
 
+    public async Task<Appointment?> GetById(int aptId)
+    {
+        return await _ctx.Appointments
+            .Where(apt => apt.Id == aptId)
+            .Include(apt => apt.Clinic)
+            .ThenInclude(ct => ct.Location)
+            .Include(apt => apt.Doctor)
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<IList<Appointment>> MyAppointments(string patientId)
     {
         return await _ctx.Appointments

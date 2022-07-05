@@ -39,6 +39,16 @@ public class AppointmentController : ControllerBase
         return Ok(apts);
     }
     
+    [Authorize(Roles = "Patient")]
+    [HttpGet]
+    [Route("mine/{id}")]
+    public async Task<ActionResult<IList<AppointmentVm>>> GetMyAppointmentById(int id)
+    {
+        var apt = await _service.GetyById(id);
+
+        return Ok(apt);
+    }
+    
     [Authorize(Roles = "Doctor")]
     [HttpGet]
     [Route("doctor/mine")]

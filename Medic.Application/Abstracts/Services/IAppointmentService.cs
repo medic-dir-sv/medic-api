@@ -5,6 +5,8 @@ namespace Medic.Services.Abstracts.Services;
 
 public interface IAppointmentService
 {
+    Task<AppointmentVm> GetyById(int aptId);
+    
     Task<AppointmentVm> CreateAppointment(string id, CreateAppointmentVm viewModel);
     
     Task<IList<AppointmentVm>> MyAppointments(string patientId);
